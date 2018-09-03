@@ -13,8 +13,22 @@ router.post('/login', (req, res, next) => {
     .catch(error => res.send(error))
 })
 
-router.post('/forgot-password', )
+router.post('/forgot-password', (req, res, next) => {
+    authController.forgotPassword(req.body)
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
+})
 
-router.post('/reset-password', )
+router.post('/reset-password', (req, res, next) => {
+    authController.resetPassword(req.body)
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
+})
+
+router.post('/authorize', (req, res, next) => {
+    authController.authorize(req.headers.authorization)
+    .then(data => res.json(data))
+    .catch(error => res.json(error))
+})
 
 module.exports = router
